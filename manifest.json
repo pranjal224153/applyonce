@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyOnce",
+  "version": "1.0.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl4YFug71urHy5Jwq506WbRdUFhYTwN3ddyqhtX3w4pejAZE3MPenjxsyE+Mp414YcHxtRKxurtuQM9/KHvhAMLqBXfLgHwcmACLFHd/YI8c9srpk6CZ5j5mCUbwWQzYhy2ml45I1krROCdEQn66WEi7z6Bzzu7UPQRKS2UIyviJYqjoH8bY6MWhohNLJi/27TpS03rE2yX/cbY/e4HZDrTeF8dKP7rbLNZgUesNaEhyXAe0duoFINAmTa1KpOJ0hu5mRwz0+AWXgS/wr7FEN4L5bPuSArHvYImXj2FvBwxIWjahMMatGzeWZHQMsPpccFpLrb7HzN9dwNadeUaFVKQIDAQAB",
+  "description": "Your application profile, ready when you are.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "ApplyOnce"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

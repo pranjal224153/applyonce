@@ -1,0 +1,24 @@
+{
+  "name": "applyonce",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/scanner.test.js tests/matcher.test.js tests/autofill.test.js tests/applications.test.js tests/storage.test.js",
+    "test:e2e": "node tests/chrome-e2e.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.33",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^29.1.1",
+    "puppeteer-core": "^25.16.0",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApplyOnce Test Application Form (Phase 3–5)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 32px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .badge-bar {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e2e8f0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #cbd5e1;
+    }
+    .required {
+      color: var(--danger);
+      margin-left: 2px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s ease;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .help-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    button[type="submit"] {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    /* Verification suite banner inside page */
+    .test-suite-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .test-suite-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .test-results-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+    }
+    .test-pass {
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .test-fail {
+      color: var(--danger);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hidden-field {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Senior Software Engineer Application</h1>
+      <p>Official ApplyOnce Test Environment for Phase 3–5 (Scan · Match · Autofill)</p>
+      <div class="badge-bar">
+        <span class="badge">Target: Email</span>
+        <span class="badge">Target: GitHub</span>
+        <span class="badge">Target: LinkedIn</span>
+        <span class="badge">Target: College</span>
+      </div>
+    </div>
+
+    <!-- The Test Job Application Form -->
+    <form id="job-application-form" novalidate>
+      <div class="form-section-title">Personal & Contact Details</div>
+
+      <!-- Full Name (Explicit Label) -->
+      <div class="form-group">
+        <label for="fullName">Full Legal Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          placeholder="Jane Doe"
+          value="Jane Doe Initial"
+          required
+        >
+      </div>
+
+      <!-- Email (Explicit Label - Target Field 1) -->
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="jane.doe@example.com"
+          value="jane.original@example.com"
+          aria-describedby="email-help"
+          required
+        >
+        <span id="email-help" class="help-text">We will send confirmation notices to this email.</span>
+      </div>
+
+      <!-- Phone (Explicit Label) -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+1 (555) 000-0000"
+        >
+      </div>
+
+      <div class="form-section-title">Online Profiles & Portfolios</div>
+
+      <!-- GitHub Profile (Explicit Label - Target Field 2) -->
+      <div class="form-group">
+        <label for="github">GitHub Profile URL <span class="required">*</span></label>
+        <input
+          type="url"
+          id="github"
+          name="github"
+          placeholder="https://github.com/username"
+          value="https://github.com/original-user"
+          required
+        >
+      </div>
+
+      <!-- LinkedIn Profile (Explicit Label - Target Field 3) -->
+      <div class="form-group">
+        <label for="linkedin">LinkedIn Profile URL <span class="required">*</span></label>
+        <input
+          type="url"
+          id="linkedin"
+          name="linkedin"
+          placeholder="https://linkedin.com/in/username"
+          value="https://linkedin.com/in/original-user"
+          required
+        >
+      </div>
+
+      <div class="form-section-title">Education & Background</div>
+
+      <!-- College / University (Target Field 4) -->
+      <div class="form-group">
+        <label for="college">College / University <span class="required">*</span></label>
+        <input
+          type="text"
+          id="college"
+          name="college"
+          placeholder="e.g. Stanford University"
+          value="Original University"
+          required
+        >
+      </div>
+
+      <!-- Degree (Select element) -->
+      <div class="form-group">
+        <label for="degree">Degree Level</label>
+        <select id="degree" name="degree">
+          <option value="">Select degree level</option>
+          <option value="bachelors" selected>Bachelor of Science</option>
+          <option value="masters">Master of Science</option>
+          <option value="phd">PhD</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Additional Notes / Skills (Textarea) -->
+      <div class="form-group">
+        <label for="additionalNotes">Relevant Skills & Experience</label>
+        <textarea
+          id="additionalNotes"
+          name="additionalNotes"
+          placeholder="Summarize your tech stack and experiences..."
+        >Initial skill notes</textarea>
+      </div>
+
+      <!-- NEGATIVE TEST CASES (Must be IGNORED by Scanner) -->
+      <!-- 1. Hidden input -->
+      <input type="hidden" id="csrf_token" name="_csrf" value="test-csrf-token-12345">
+
+      <!-- 2. Disabled input -->
+      <div class="form-group">
+        <label for="archived_reference">Archived Internal Reference (Disabled)</label>
+        <input type="text" id="archived_reference" name="archived_reference" value="REF-999" disabled>
+      </div>
+
+      <!-- 3. CSS display:none hidden input -->
+      <div class="hidden-field">
+        <label for="bot_trap">Honeypot Trap (Hidden)</label>
+        <input type="text" id="bot_trap" name="bot_trap" value="spam">
+      </div>
+
+      <div class="actions">
+        <button type="submit" id="submit-btn">Submit Application</button>
+      </div>
+    </form>
+
+    <!-- Phase 5 Autofill Verification Panel -->
+    <div class="test-suite-panel" id="autofill-test-panel">
+      <div class="test-suite-title">
+        <span>🤖 Phase 5 – Autofill Verification Suite</span>
+        <button
+          type="button"
+          id="run-autofill-verify-btn"
+          style="margin-left: auto; background: #6366f1; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;"
+        >
+          Verify Fill Results
+        </button>
+      </div>
+      <ul class="test-results-list" id="autofill-results-list">
+        <li style="color: var(--text-muted);">Ready. Use ApplyOnce popup → select GitHub only → Fill → click Verify Fill Results.</li>
+      </ul>
+    </div>
+
+    <!-- Phase 3 Scan Verification Panel -->
+    <div class="test-suite-panel" id="test-suite-panel">
+      <div class="test-suite-title">
+        <span>🧪 Test Page Diagnostic Suite</span>
+        <button
+          type="button"
+          id="run-local-scan-btn"
+          style="margin-left: auto; background: #334155; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;"
+        >
+          Verify In-Page Scanner
+        </button>
+      </div>
+      <ul class="test-results-list" id="test-results-list">
+        <li style="color: var(--text-muted);">Ready. Click "Verify In-Page Scanner" or trigger the ApplyOnce extension popup.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // In-page runner to allow automated verification
+    window.__APPLYONCE_TEST_FORM_LOADED = true;
+    window.__GITHUB_ONLY_FILL_EXPECTED = 'https://github.com/janedoe';
+
+    // Record initial values to verify immutability
+    window.__INITIAL_FIELD_VALUES = {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      github: document.getElementById('github').value,
+      linkedin: document.getElementById('linkedin').value,
+      college: document.getElementById('college').value,
+      degree: document.getElementById('degree').value,
+      additionalNotes: document.getElementById('additionalNotes').value
+    };
+
+    window.verifyFormValuesUnchanged = function() {
+      for (const [id, originalVal] of Object.entries(window.__INITIAL_FIELD_VALUES)) {
+        const el = document.getElementById(id);
+        if (!el || el.value !== originalVal) {
+          return { unchanged: false, field: id, expected: originalVal, actual: el ? el.value : null };
+        }
+      }
+      return { unchanged: true };
+    };
+
+    document.getElementById('run-local-scan-btn')?.addEventListener('click', () => {
+      if (typeof window.executeDOMFormScan === 'function') {
+        const res = window.executeDOMFormScan();
+        renderResults(res);
+      } else {
+        const list = document.getElementById('test-results-list');
+        list.innerHTML = '<li style="color:#f59e0b;">executeDOMFormScan is ready to be injected by ApplyOnce extension!</li>';
+      }
+    });
+
+    function renderResults(res) {
+      const list = document.getElementById('test-results-list');
+      list.innerHTML = '';
+      const fields = res.fields || [];
+      const hasEmail = fields.some(f => f.id === 'email' || f.name === 'email');
+      const hasGitHub = fields.some(f => f.id === 'github' || f.name === 'github');
+      const hasLinkedIn = fields.some(f => f.id === 'linkedin' || f.name === 'linkedin');
+      const hasCollege = fields.some(f => f.id === 'college' || f.name === 'college');
+      const ignoredHidden = !fields.some(f => f.id === 'csrf_token' || f.id === 'bot_trap');
+      const ignoredDisabled = !fields.some(f => f.id === 'archived_reference');
+      const immutability = window.verifyFormValuesUnchanged();
+
+      const assertions = [
+        { label: 'Email field detected', pass: hasEmail },
+        { label: 'GitHub field detected', pass: hasGitHub },
+        { label: 'LinkedIn field detected', pass: hasLinkedIn },
+        { label: 'College field detected', pass: hasCollege },
+        { label: 'Hidden inputs ignored', pass: ignoredHidden },
+        { label: 'Disabled inputs ignored', pass: ignoredDisabled },
+        { label: 'Form values remained completely unmodified (Phase 3 scan is read-only)', pass: immutability.unchanged },
+      ];
+
+      assertions.forEach(a => {
+        const li = document.createElement('li');
+        li.className = a.pass ? 'test-pass' : 'test-fail';
+        li.textContent = `${a.pass ? '✓' : '✗'} ${a.label}`;
+        list.appendChild(li);
+      });
+    }
+
+    // ── Phase 5 autofill verification ─────────────────────────────────────
+    // Expected after "GitHub only" fill:
+    //   - GitHub has the profile value
+    //   - All other fields are unchanged
+    document.getElementById('run-autofill-verify-btn')?.addEventListener('click', () => {
+      const list = document.getElementById('autofill-results-list');
+      list.innerHTML = '';
+
+      const initial  = window.__INITIAL_FIELD_VALUES;
+      const expected = window.__GITHUB_ONLY_FILL_EXPECTED;
+
+      const get = (id) => document.getElementById(id);
+
+      const checks = [
+        {
+          label: 'GitHub field was filled with profile value',
+          pass: get('github') && get('github').value === expected,
+          detail: `Expected "${expected}", got "${get('github')?.value}"`,
+        },
+        {
+          label: 'Email field was NOT changed (not selected for fill)',
+          pass: get('email') && get('email').value === initial.email,
+          detail: `Expected "${initial.email}", got "${get('email')?.value}"`,
+        },
+        {
+          label: 'Full Name field was NOT changed',
+          pass: get('fullName') && get('fullName').value === initial.fullName,
+          detail: `Expected "${initial.fullName}", got "${get('fullName')?.value}"`,
+        },
+        {
+          label: 'LinkedIn field was NOT changed (not selected for fill)',
+          pass: get('linkedin') && get('linkedin').value === initial.linkedin,
+          detail: `Expected "${initial.linkedin}", got "${get('linkedin')?.value}"`,
+        },
+        {
+          label: 'College field was NOT changed (not selected for fill)',
+          pass: get('college') && get('college').value === initial.college,
+          detail: `Expected "${initial.college}", got "${get('college')?.value}"`,
+        },
+        {
+          label: 'Disabled field (archived_reference) still has original value',
+          pass: get('archived_reference')?.value === 'REF-999',
+          detail: `Got "${get('archived_reference')?.value}"`,
+        },
+        {
+          label: 'Hidden honeypot field was NOT touched',
+          pass: get('bot_trap')?.value === 'spam',
+          detail: `Got "${get('bot_trap')?.value}"`,
+        },
+      ];
+
+      checks.forEach(c => {
+        const li = document.createElement('li');
+        li.className = c.pass ? 'test-pass' : 'test-fail';
+        li.textContent = `${c.pass ? '✓' : '✗'} ${c.label}`;
+        if (!c.pass && c.detail) {
+          const detail = document.createElement('span');
+          detail.style.cssText = 'font-size:11px;margin-left:8px;color:#94a3b8;';
+          detail.textContent = `(${c.detail})`;
+          li.appendChild(detail);
+        }
+        list.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>
